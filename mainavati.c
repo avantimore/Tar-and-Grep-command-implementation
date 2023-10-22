@@ -59,7 +59,22 @@ int main(int argc, char *argv[]){
         	decompressDirectory(inputDirPath) ;
         	printf("Directory decompressed successfully.\n");
     	}
-    	
+    	else if(mode=='t'){
+    	    char *inFileName = argv[3];
+
+		    const char* outputFile = "op.txt";
+		    const char* extension = strrchr(inFileName, '.');
+		    if(extension != NULL){
+		        if (strcmp(extension, ".tar") == 0){
+		            decompressFile(inFileName, outputFile);
+		            searchFileNames(outputFile); 
+		        }
+		        else{
+		            searchFileNames(inFileName); 
+		        }
+		    }
+		    
+   	 		}
     	else{
     	    printf("Please check whether you have entered the right command!");
     	}

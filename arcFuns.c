@@ -43,6 +43,35 @@ void archiveFiles(const char* source_path, const char* destination_path) {
     }
 }
 
+void searchFileNames(const char *destination_file_path) {
+    FILE* destination_file = fopen(destination_file_path, "r");
+    if (destination_file == NULL) {
+        printf("Error opening the destination file.\n");
+        return;
+    }
+
+    char buffer[BUFFER_SIZE];
+    char* line;
+    int file_count = 0;
+    char file_names[100][256];  // Assuming maximum 100 files and file names up to 255 characters
+
+    while ((line = fgets(buffer, sizeof(buffer), destination_file)) != NULL) {
+        if (strncmp(line, "Source File: ", 13) == 0) {
+            char* file_name = line + 13; // Skip the "Source File: " prefix
+            file_name[strcspn(file_name, "\n")] = '\0'; // Remove the trailing newline character
+            strncpy(file_names[file_count], file_name, sizeof(file_names[file_count]));
+            file_count++;
+        }
+    }
+
+    fclose(destination_file);
+
+    printf("Archived files:\n");
+    for (int i = 0; i < file_count; i++) {
+        printf("%s\n", file_names[i]);
+    }
+}
+
 void extractFiles(const char *destination_file_path) {
     FILE* destination_file = fopen(destination_file_path, "r");
     if (destination_file == NULL) {
