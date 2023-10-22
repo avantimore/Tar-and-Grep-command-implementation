@@ -177,3 +177,13 @@ void freeTrie(TrieNode* node) {
 
 
 
+
+void usage(){                                                                                                         // Function to give information about the options
+	printf("----------------------------------------------------------------------------------------------\n");
+    printf("| -i : search in file                                                                        |\n"); 
+    printf("| -h : display help                                                                          |\n"); 
+    printf("| -c : case insensative search in files                                                      |\n"); 
+    printf("| -n : give the line count and highlight the searched word                                   |\n");
+    printf("| -r : search recursively in directories and sub directories                                 |\n"); 
+    printf("----------------------------------------------------------------------------------------------\n");
+}

@@ -84,6 +84,9 @@ int main(int argc, char *argv[]){
    			if (argc == 3){
 
 		}
+    		if (strcmp(argv[2], "-h") == 0) {                         //if the option provided is "-h"
+  				  usage();
+			}
 	
 	    if (argc < 5 && argc !=3) {
 	        printf("Insufficient command line arguments.\n");
